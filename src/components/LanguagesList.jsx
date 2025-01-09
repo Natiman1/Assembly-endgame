@@ -2,26 +2,29 @@
 import { languages } from "../../languages"
 
 function LanguagesList() {
-   
-    const langEl = languages.map(lang => {
-        const styles = {
-          backgroundColor: lang.backgroundColor,
-          color: lang.color
-        }
-        return (
-          <span key={lang.name} className='languages' style={styles}>{lang.name}</span>
-        )
-      })
-    
 
+  const langEl = languages.map(lang => {
+    const styles = {
+      backgroundColor: lang.backgroundColor,
+      color: lang.color
+    }
     return (
-
-       <section className="lan-container">
-        {langEl}
-       </section>
-       
-
+      <span
+        key={lang.name}
+        className='languages'
+        style={styles}>{lang.name}</span>
     )
+  })
+
+
+  return (
+
+    <section className="lan-container">
+      {langEl}
+    </section>
+
+
+  )
 }
 
 // LanguagesList.propTypes = {
