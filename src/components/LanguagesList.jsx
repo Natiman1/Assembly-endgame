@@ -1,34 +1,36 @@
-// import PropTypes from "prop-types"
+import PropTypes from "prop-types"
+import clsx from "clsx"
 import { languages } from "../../languages"
 
-function LanguagesList() {
+function LanguagesList(props) {
 
-  const langEl = languages.map(lang => {
+  const langEl = languages.map((lang, index) => {
     const styles = {
       backgroundColor: lang.backgroundColor,
       color: lang.color
     }
+
+    const lostLang = index < props.wrongGuesseCount;
+
+
+    
     return (
       <span
         key={lang.name}
-        className='languages'
+        className={clsx("languages", lostLang && "lost")}
         style={styles}>{lang.name}</span>
     )
   })
 
-
   return (
-
     <section className="lan-container">
       {langEl}
     </section>
-
-
   )
 }
 
-// LanguagesList.propTypes = {
-//     langEl: PropTypes.string.isRequired,
-// }
+LanguagesList.propTypes = {
+  wrongGuesseCount: PropTypes.number.isRequired
+}
 
 export default LanguagesList

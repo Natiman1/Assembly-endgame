@@ -7,11 +7,9 @@ body {
   margin: 0;
   font-family: "Hanken Grotesk", Arial, sans-serif;
   background-color: #262626;
-  color: #F9F4DA;
+  color: #f9f4da;
   padding-top: 20px;
   height: 100vh;
-  display: flex;
-  justify-content: center;
   overflow: hidden;
 }
 
@@ -22,7 +20,7 @@ header {
 header p {
   width: 352px;
   font-size: 14px;
-  color: #8E8E8E;
+  color: #8e8e8e;
   margin: 4px 0 20px 0;
 }
 
@@ -34,11 +32,33 @@ main {
 }
 
 .status {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
   width: 352px;
-  background-color: #7A5EA7;
+  height: 80px;
   text-align: center;
-  padding: 15px 0 ;
+  padding: 10px 0;
   border-radius: 4px;
+}
+
+.win {
+  background-color: #10a95b;
+}
+
+.lose {
+  background-color: #ba2a2a;
+}
+
+.farewell {
+  background-color: #7a5ea7;
+  border: 1px dashed #323232;
+}
+
+.farewell-text {
+  font-style: italic;
+  font-weight: 400;
 }
 
 .lan-container {
@@ -47,7 +67,7 @@ main {
   gap: 4.5px;
   justify-content: center;
   align-items: center;
-  margin-top: 36px;
+  margin-top: 30px;
   width: 352px;
 }
 
@@ -57,9 +77,10 @@ main {
   align-items: center;
   border-radius: 3px;
   padding: 4px;
+  position: relative;
 }
 
-.languages.lost::before {
+.lost::before {
   content: "💀";
   position: absolute;
   display: flex;
@@ -84,11 +105,11 @@ main {
   background-color: #323232;
   height: 40px;
   width: 40px;
-  border-bottom: 1px solid #F9F4DA;
+  border-bottom: 1px solid #f9f4da;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 36px 0;
+  margin: 30px 0;
   padding: 0 6px;
   font-size: 18px;
 }
@@ -104,10 +125,10 @@ main {
 
 button {
   font-family: "Hanken Grotesk", Arial, sans-serif;
-  border: 1px solid #D7D7D7;
+  border: 1px solid #d7d7d7;
   font-size: 16px;
   font-weight: 600;
-  color: #1E1E1E;
+  color: #1e1e1e;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -115,24 +136,22 @@ button {
 .keys {
   width: 40px;
   height: 40px;
-  background-color: #FCBA29;
-  
+  background-color: #fcba29;
 }
 
 .btn {
   width: 228px;
-  background-color: #11B5E5;
+  background-color: #11b5e5;
   padding: 6px;
-  margin: 20px 0 ;
+  margin: 20px 0;
 }
 
-
 .green {
-  background-color: #10A95B;
+  background-color: #10a95b;
 }
 
 .red {
-  background-color: #EC5D49;
+  background-color: #ec5d49;
 }
 
 @media (max-width: 390px) {
