@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import clsx from 'clsx';
-import { getFarewellText } from '../utils'
+import Confetti from "react-confetti";
+import { getFarewellText, getRandomWord } from '../utils'
+
 
 import Header from './components/Header'
 
@@ -11,7 +13,7 @@ import { languages } from '../languages';
 
 function App() {
   // stet values
-  const [currentWord, setCurrentword] = useState("react")
+  const [currentWord, setCurrentword] = useState(() => getRandomWord())
   const [userGuess, steUserGuess] = useState([])
 
   //derived values
@@ -23,7 +25,10 @@ function App() {
   const lastGuessedLetter = userGuess[userGuess.length - 1]
   const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
 
-
+  function newGame() {
+    setCurrentword(getRandomWord())
+    steUserGuess([])
+  }
 
   //Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
@@ -46,6 +51,7 @@ function App() {
           green: isCorrect,
           red: isWrong,
         })}
+        disabled={isGameOver}
         onClick={() => guessedLetters(letter)}
       >{letter.toUpperCase()}</button>
     )
@@ -54,7 +60,10 @@ function App() {
 
   function renderStatus() {
     if (!isGameOver && isLastGuessIncorrect) {
-      return (<p className="farewell-text">{getFarewellText(languages[wrongGuesseCount - 1].name)} </p>)
+      return (
+        <p className="farewell-text">
+          {getFarewellText(languages[wrongGuesseCount - 1].name)}
+        </p>)
     }
     if (isGameWon) {
       return (
@@ -76,11 +85,15 @@ function App() {
   }
 
   const letters = currentWord.split("").map((letter, index) => {
+    const shoudRevealLetter = isGameLost || userGuess.includes(letter)
+
     return (
       <span
         key={index}
-        className='letter' >
-        {userGuess.includes(letter) ? letter.toUpperCase() : ""}
+        className={clsx('letter',
+          isGameLost && !userGuess.includes(letter) && "revealed"
+        )} >
+        {shoudRevealLetter ? letter.toUpperCase() : ""}
       </span>
     )
 
@@ -88,7 +101,11 @@ function App() {
   })
 
   return (
-    <main>
+     <main>
+      {isGameWon && <Confetti 
+        recycle={false}
+        numberOfPieces={1000}
+      />}
       <Header />
       <section className={clsx("status", {
         win: isGameWon,
@@ -101,7 +118,7 @@ function App() {
       <section className='letter-container'>{letters}</section>
       <section className="keyboard">{keybord}</section>
       <section>
-        {isGameOver && <button className='btn'>New Game</button>}
+        {isGameOver && <button onClick={newGame} className='btn'>New Game</button>}
       </section>
     </main>
 

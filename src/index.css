@@ -114,6 +114,10 @@ main {
   font-size: 18px;
 }
 
+.revealed {
+  color: #ec5d49;
+}
+
 .keyboard {
   display: flex;
   flex-wrap: wrap;
@@ -139,11 +143,9 @@ button {
   background-color: #fcba29;
 }
 
-.btn {
-  width: 228px;
-  background-color: #11b5e5;
-  padding: 6px;
-  margin: 20px 0;
+.keys:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .green {
@@ -154,11 +156,38 @@ button {
   background-color: #ec5d49;
 }
 
-@media (max-width: 390px) {
+.btn {
+  width: 228px;
+  background-color: #11b5e5;
+  padding: 6px;
+  margin: 20px 0;
+}
+
+@media (max-width: 430px) {
   body {
+    display: flex;
+    justify-content: center;
     align-items: center;
   }
   .keyboard {
     margin: 0 10px;
   }
+}
+
+@media (max-width: 768px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}
+
+@media (max-width: 1024px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
 }
